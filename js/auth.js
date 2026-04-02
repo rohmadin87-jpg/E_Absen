@@ -1,5 +1,5 @@
 /**
- * Portal Karyawan - Authentication
+ * Portal Absen - Authentication
  * Handle login/logout and session management
  */
 
@@ -197,7 +197,7 @@ const auth = {
         const welcomeNameEl = document.getElementById('welcome-name');
 
         if (userNameEl) userNameEl.textContent = this.currentUser.name;
-        if (userRoleEl) userRoleEl.textContent = this.currentUser.role === 'admin' ? 'Administrator' : 'Karyawan';
+        if (userRoleEl) userRoleEl.textContent = this.currentUser.role === 'admin' ? 'Administrator' : 'Siswa/Karyawan';
         if (userAvatarEl) userAvatarEl.src = getAvatarUrl(this.currentUser);
         if (welcomeNameEl) welcomeNameEl.textContent = this.currentUser.name.split(' ')[0];
     },
@@ -213,11 +213,11 @@ const auth = {
         document.getElementById('profile-avatar').src = getAvatarUrl(user);
         document.getElementById('profile-name').textContent = user.name || '-';
         document.getElementById('profile-email').textContent = user.email || '-';
-        document.getElementById('profile-role').textContent = user.role === 'admin' ? 'Administrator' : 'Karyawan';
+        document.getElementById('profile-role').textContent = user.role === 'admin' ? 'Administrator' : 'Siswa/Karyawan';
 
         // Employee-specific fields
         const empFields = document.getElementById('profile-employee-fields');
-        if (user.role === 'karyawan' || user.role !== 'admin') {
+        if (user.role === 'siswa/karyawan' || user.role !== 'admin') {
             // Fetch profile from backend
             try {
                 const result = await api.getEmployeeProfile(user.id);
